@@ -1,5 +1,7 @@
-from functools import partial
-from rest_framework import serializers
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.generics import (CreateAPIView, DestroyAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView)
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import (CreateAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView, UpdateAPIView)
 from tracker.serializers import (ProjectSerializer, ProjectActivitySerializer)
 from tracker.models import Project, ProjectActivity
@@ -7,10 +9,12 @@ from tracker.models import Project, ProjectActivity
 
 class CreateProjectApiview(CreateAPIView):
     """
-    
+    pytho
     
     """
     serializer_class = ProjectSerializer
+    permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
+
 
     def perform_create(self, serializer):
         return serializer.save()
@@ -22,16 +26,20 @@ class RetriveProjectsApiView(ListAPIView):
     
     """
     serializer_class = ProjectSerializer
+    permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
+
     
     def get_queryset(self):
-        return Project.objects.all()
+        return Project.objects.filter(owner=self.request.user)
     
 
-class UpdateProjectApiview(RetrieveUpdateDestroyAPIView):
+class RetrieveUpdateDeleteProjectApiview(RetrieveUpdateDestroyAPIView):
     """
     
     """
     serializer_class = ProjectSerializer
+    permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
+
 
     def get_queryset(self):
         return Project.objects.all()
@@ -51,6 +59,8 @@ class CreateProjectActivityApiview(CreateAPIView):
     
     """
     serializer_class = ProjectActivitySerializer
+    permission_classes = (IsAuthenticated,) # protect the endpoint
+
 
     def perform_create(self, serializer):
         return serializer.save()
@@ -60,15 +70,19 @@ class RetriveProjectsActivitiesApiView(ListAPIView):
     
     """
     serializer_class = ProjectActivitySerializer
+    permission_classes = (IsAuthenticated,) # protect the endpoint
+
 
     def get_queryset(self):
-        return ProjectActivity.objects.all()
+        return ProjectActivity.objects.filter(owner=self.request.user)
 
-class UpdateProjectActivityApiview(RetrieveUpdateDestroyAPIView):
+class DestroyProjectActivityApiview(DestroyAPIView):
     """
     
     """
     serializer_class = ProjectActivitySerializer
+    permission_classes = (IsAuthenticated,) # protect the endpoint
+
 
     def get_queryset(self):
         return ProjectActivity.objects.all()
