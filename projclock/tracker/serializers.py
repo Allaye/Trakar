@@ -1,6 +1,5 @@
-from django.db.models import fields
 from rest_framework import serializers
-from tracker.models import Project, ProjectActivity, Employee
+from tracker.models import Project, ProjectActivity
 
 
 class ProjectSerializer(serializers.ModelSerializer):
