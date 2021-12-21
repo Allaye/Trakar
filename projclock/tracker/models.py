@@ -1,21 +1,10 @@
 from datetime import datetime
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from employee.models import Employee
 # Create your models here.
 
 
 # Create your models here.
-class Employee(AbstractUser):
-    name = models.CharField(max_length=255)
-    email = models.CharField(max_length=255, unique=True)
-    password = models.CharField(max_length=255)
-    username = models.CharField(max_length=255, unique=True)
-    molo = models.CharField(max_length=255, unique=False, null=True)
-
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = []
-
-
 class Project(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
