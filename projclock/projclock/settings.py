@@ -38,9 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tracker.apps.TrackerConfig',
+    'employee.apps.EmployeeConfig',
     'rest_framework',
-    'employee',
-    'tracker',
     'utils',
     'django_filters',
 ]
@@ -133,7 +132,7 @@ AUTH_USER_MODEL = "employee.Employee"
 # rest_framework settings
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'authentication.jwt.JwtAuthentication'
+        'employee.jwt_engine.JwtAuthentication'
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination'
 
