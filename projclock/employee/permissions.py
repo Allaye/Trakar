@@ -13,7 +13,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
             return True
 
         # Write permissions are only allowed to the owner of the snippet.
-        return request.user == Employee.objects.get(id=view.kwargs['id'])
+        return obj.user == request.user
 
 class IsProjectMember(permissions.BasePermission):
     """
