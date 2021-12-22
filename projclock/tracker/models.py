@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from django.db import models
 from employee.models import Employee
 # Create your models here.
@@ -52,3 +52,16 @@ class ProjectActivity(models.Model):
             bool: True if the activity is running, False otherwise
         """
         return self.end_time is None
+
+    @property
+    def duration(self):
+        """
+        get the duration of the activity
+
+        Returns:
+            timedelta: duration of the activity
+        """
+        if self.is_running:
+            return round(int(datetime.now(timezone.utc) - self.start_time))
+        else:
+            return round(int(self.end_time - self.start_time))
