@@ -5,6 +5,7 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import (CreateAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView, UpdateAPIView)
 from tracker.serializers import (ProjectSerializer, ProjectActivitySerializer)
 from tracker.models import Project, ProjectActivity
+from employee.permissions import IsOwnerOrReadOnly
 # Create your views here.
 
 class CreateProjectApiview(CreateAPIView):
@@ -20,17 +21,29 @@ class CreateProjectApiview(CreateAPIView):
         return serializer.save()
 
 
+class RetriveMyProjectsApiView(ListAPIView):
+    """
+    
+    
+    """
+    serializer_class = ProjectSerializer
+    permission_classes = (IsAuthenticated,) # protect the endpoint
+
+    
+    def get_queryset(self):
+        return Project.objects.filter(members=self.request.user)
+
 class RetriveProjectsApiView(ListAPIView):
     """
     
     
     """
     serializer_class = ProjectSerializer
-    permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
+    permission_classes = (IsAuthenticated,) # protect the endpoint
 
     
     def get_queryset(self):
-        return Project.objects.filter(owner=self.request.user)
+        return Project.objects.all()
     
 
 class RetrieveUpdateDeleteProjectApiview(RetrieveUpdateDestroyAPIView):
@@ -74,14 +87,14 @@ class RetriveProjectsActivitiesApiView(ListAPIView):
 
 
     def get_queryset(self):
-        return ProjectActivity.objects.filter(owner=self.request.user)
+        return ProjectActivity.objects.filter(user=self.request.user)
 
 class DestroyProjectActivityApiview(DestroyAPIView):
     """
     
     """
     serializer_class = ProjectActivitySerializer
-    permission_classes = (IsAuthenticated,) # protect the endpoint
+    permission_classes = (IsAuthenticated, IsOwnerOrReadOnly)  # protect the endpoint
 
 
     def get_queryset(self):
