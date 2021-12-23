@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta, date
 from django.db import models
 from employee.models import Employee
 # Create your models here.
@@ -11,7 +11,7 @@ class Project(models.Model):
     description = models.TextField(blank=False, null=False, max_length=400, default="")
     technology = models.JSONField()
     members = models.ManyToManyField(Employee)
-    start_date = models.DateField(default=datetime.now)
+    start_date = models.DateField(default=date.today())
     end_date = models.DateField(blank=True, null=True)
 
     class Meta:
@@ -62,6 +62,8 @@ class ProjectActivity(models.Model):
             timedelta: duration of the activity
         """
         if self.is_running:
-            return round(int(datetime.now(timezone.utc) - self.start_time))
+            sec = datetime.now(timezone.utc) - self.start_time
+            return str(timedelta(seconds=round(sec.total_seconds())))
         else:
-            return round(int(self.end_time - self.start_time))
+            sec = self.end_time - self.start_time
+            return str(timedelta(seconds=round(sec.total_seconds())))
