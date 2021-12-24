@@ -1,16 +1,13 @@
 from django.db.models import fields
-from django.http import response
+from django.http import request, response
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import (CreateAPIView, DestroyAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView)
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import (CreateAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView, UpdateAPIView)
-from rest_framework.response import Response
-from rest_framework import status
 from tracker.serializers import (ProjectSerializer, ProjectActivitySerializer)
 from tracker.models import Project, ProjectActivity
-from employee.permissions import IsOwner, IsProjectMember
-from employee.models import Employee
+from employee.permissions import IsOwner, IsProjectMember, IsCurrentUser
 
 ########################### Project ###########################
 
@@ -85,7 +82,7 @@ class DeleteProjectApiview(DestroyAPIView):
     queryset = Project.objects.all()
     def perform_destroy(self, instance):
         instance.delete()
-        
+
 
 ################## ProjectActivity ##############################
 
@@ -94,10 +91,14 @@ class CreateProjectActivityApiview(CreateAPIView):
     
     """
     serializer_class = ProjectActivitySerializer
-    permission_classes = (IsAuthenticated, IsProjectMember) # protect the endpoint
-
+    permission_classes = (IsAuthenticated, IsProjectMember, IsCurrentUser) # protect the endpoint
+    
+    
 
     def perform_create(self, serializer):
+        data = self.request.data
+        project = Project.objects.filter(id=data['project']).prefetch_related('members')
+        self.check_object_permissions(self.request, project)
         return serializer.save()
 
 class RetriveProjectsActivitiesApiView(ListAPIView):
@@ -131,3 +132,14 @@ class DestroyProjectActivityApiview(DestroyAPIView):
 
     def perform_destroy(self, instance):
         return instance.delete()
+
+class GetTotalProjectActivityTime(ListAPIView):
+    """
+    
+    """
+    serializer_class = ProjectActivitySerializer
+    permission_classes = (IsAuthenticated,) # protect the endpoint
+
+
+    def get_queryset(self):
+        return ProjectActivity.objects.filter(user=self.request.user)
