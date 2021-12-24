@@ -10,7 +10,7 @@ class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=False, null=False, max_length=400, default="")
     technology = models.JSONField()
-    members = models.ManyToManyField(Employee)
+    members = models.ManyToManyField(Employee, related_name='all_members')
     start_date = models.DateField(default=date.today())
     end_date = models.DateField(blank=True, null=True)
 
