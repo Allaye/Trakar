@@ -8,7 +8,7 @@ class RegisterApiViewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Employee
-        fields = ('username', 'email', 'password', 'is_staff')
+        fields = ('id', 'username', 'email', 'password', 'is_staff')
 
     def create(self, validated_data):
         return Employee.objects.create_user(**validated_data)
