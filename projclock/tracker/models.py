@@ -15,6 +15,15 @@ class Project(models.Model):
     start_date = models.DateField(default=date.today())
     end_date = models.DateField(blank=True, null=True)
 
+
+    @property
+    def is_completed(self):
+        """
+        check if the current project has been completed and closed
+        """
+        return self.end_date < datetime.now()
+    
+
     class Meta:
         ordering = ['start_date']
 
