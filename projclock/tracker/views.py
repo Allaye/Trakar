@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from tracker.serializers import (ProjectSerializer, ProjectActivitySerializer)
 from tracker.models import Project, ProjectActivity
 from employee.permissions import IsOwner, IsProjectMember, IsCurrentUser
-from utils.analytics import get_total_project_activity_time
+from utils.analytics import get_total_project_activity_time, get_individual_project_activity_time
 
 ########################### Project ###########################
 
@@ -137,7 +137,7 @@ class DestroyProjectActivityApiview(DestroyAPIView):
     def perform_destroy(self, instance):
         return instance.delete()
 
-class GetTotalProjectActivityTime(APIView):
+class GetIndividualProjectActivityTime(APIView):
     """
     
     """
@@ -146,5 +146,17 @@ class GetTotalProjectActivityTime(APIView):
 
     def get(self, request, *args, **kwargs):
         activities = ProjectActivity.objects.filter(user=self.kwargs['user'], project_id=self.kwargs['project']).annotate(end_or_now=Coalesce('end_time', Now())).annotate(duration=F('end_or_now')-F('start_time'))
+        serializer = ProjectActivitySerializer(activities, many=True)
+        return Response(get_individual_project_activity_time(serializer.data))
+
+class GetTotalProjectActivityTime(APIView):
+    """
+    
+    """
+    serializer_class = ProjectActivitySerializer
+    permission_classes = (IsAuthenticated, IsOwner|IsAdminUser) # protect the endpoint
+
+    def get(self, request, *args, **kwargs):
+        activities = ProjectActivity.objects.filter(project_id=self.kwargs['project']).annotate(end_or_now=Coalesce('end_time', Now())).annotate(duration=F('end_or_now')-F('start_time'))
         serializer = ProjectActivitySerializer(activities, many=True)
         return Response(get_total_project_activity_time(serializer.data))
