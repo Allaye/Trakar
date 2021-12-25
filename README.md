@@ -1,11 +1,11 @@
 <div id="top"></div>
-<!--
+
 *** Thanks for checking out this projecr. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
 *** or simply open an issue with the tag "feature update".
 *** Don't forget to give the project a star if you like it!
 *** Thanks again! Now go create something AMAZING! :D
--->
+
 
 
 
