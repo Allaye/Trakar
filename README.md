@@ -1,10 +1,5 @@
 <div id="top"></div>
 
-*** Thanks for checking out this projecr. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "feature update".
-*** Don't forget to give the project a star if you like it!
-*** Thanks again! Now go create something AMAZING! :D
 
 
 
@@ -29,26 +24,30 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://github.com/allaye/trakar">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Trakar</h3>
 
   <p align="center">
-    project_description
-    <br />
+    This is a real time project activity tracker, which tracks your time spent on projects.
+    <!-- <br />
     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/github_username/repo_name">View Demo</a>
+    · -->
+    <a href="https://github.com/allaye/trakar/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/allaye/trakar/issues">Request Feature</a>
   </p>
 </div>
 
+### Thanks for checking out this projecr. If you have a suggestion
+### that would make this better, please fork the repo and create a pull request or simply open an issue with the tag "feature update".
+### Don't forget to give the project a star if you like it!
+### Thanks again! Now go create something AMAZING! :D
 
 
 <!-- TABLE OF CONTENTS -->
