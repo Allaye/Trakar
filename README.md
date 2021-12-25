@@ -218,4 +218,4 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/screenshot.png --> 
 
---> Thanks for checking out this projecr. <--
+<h3 align="center"> --> Thanks for checking out this projecr. <-- </h3>
