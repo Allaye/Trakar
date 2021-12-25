@@ -148,7 +148,10 @@ This section contains all the useful endpoints this project provides.
                   "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQwNDQ2OTM1fQ.wF4WvEK37GOXRWC8rzRWUv2UgToNtqaRXte_G_wbO4s",
                   "is_staff": false
               }
-}
+        - [x] Logout a user:{
+          requirement is to be loged in
+        }
+    
     - [x] Project endpoints
 
     - [x] Project Activities endpoints
