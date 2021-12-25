@@ -3,6 +3,7 @@ from tracker.models import Project, ProjectActivity
 
 
 class ProjectSerializer(serializers.ModelSerializer):
+    is_completed = serializers.ReadOnlyField()
     
     class Meta:
         model = Project
