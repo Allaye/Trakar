@@ -1,5 +1,6 @@
 from datetime import datetime, timezone, timedelta, date
 from django.db import models
+from django.utils.functional import cached_property
 from employee.models import Employee
 # Create your models here.
 
@@ -53,7 +54,7 @@ class ProjectActivity(models.Model):
         """
         return self.end_time is None
 
-    @property
+    @cached_property
     def duration(self):
         """
         get the duration of the activity
