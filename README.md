@@ -130,6 +130,19 @@ This section contains all the useful endpoints this project provides.
 
     - [x] User endpoints
 
+        - [x] Register a new user
+             * POST /api/register/
+              request body:{
+                  "username": "johndoe",
+                  "email": "john@email.com",
+                  "password": "password"
+              }
+        - [x] Login a user
+             * POST /api/login/
+              request body:{
+                  "username": "johndoe",
+                  "password": "password"
+              }
     - [x] Project endpoints
 
     - [x] Project Activities endpoints
