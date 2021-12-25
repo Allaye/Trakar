@@ -126,14 +126,17 @@ install the requirements.txt file using the following command:
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+This section contains all the useful endpoints this project provides.
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+    - [x] User endpoints
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+    - [x] Project endpoints
+
+    - [x] Project Activities endpoints
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-- [x] Add Changelog
 
 
 <!-- ROADMAP
@@ -215,4 +218,4 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/screenshot.png --> 
 
--->
+--> Thanks for checking out this projecr. <--
