@@ -1,3 +1,4 @@
+from datetime import datetime
 from rest_framework import permissions
 from employee.models import Employee
 from tracker.models import Project, ProjectActivity
@@ -55,3 +56,25 @@ class IsCurrentUser(permissions.BasePermission):
         # Write permission to only allow current user create activity for themselves.
         id = request.data.get('user', None)
         return request.user.id == id
+
+
+
+class IsProjectActive(permissions.BasePermission):
+    """
+    Custom permission to only allow owners of an activity object to edit or delete it.
+    """
+    message = 'You are not the owner of this activity, so yoi can not edit or delete something you did not create.'
+
+    def has_object_permission(self, request, view, obj):
+        # Read permissions are allowed to any request,
+        # so we'll always allow GET, HEAD or OPTIONS requests.
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        # Write permission to only allow 
+        data = request.data
+        end_date = data['end_date']
+        if not end_date:
+            return True
+        else:
+            return end_date < datetime.now()
