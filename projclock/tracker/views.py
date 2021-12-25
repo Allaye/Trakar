@@ -10,7 +10,7 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.response import Response
 from tracker.serializers import (ProjectSerializer, ProjectActivitySerializer)
 from tracker.models import Project, ProjectActivity
-from employee.permissions import IsOwner, IsProjectMember, IsCurrentUser
+from employee.permissions import IsOwner, IsProjectMember, IsCurrentUser, IsProjectActive
 from utils.analytics import get_total_project_activity_time, get_individual_project_activity_time
 
 ########################### Project ###########################
@@ -95,7 +95,7 @@ class CreateProjectActivityApiview(CreateAPIView):
     
     """
     serializer_class = ProjectActivitySerializer
-    permission_classes = (IsAuthenticated, IsProjectMember, IsCurrentUser) # protect the endpoint
+    permission_classes = (IsAuthenticated, IsProjectMember, IsCurrentUser, IsProjectActive) # protect the endpoint
     
     
 
