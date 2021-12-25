@@ -1,13 +1,17 @@
-from django.db.models import fields
+from django.db.models import fields, Sum, F
+from django.db.models.functions import Coalesce, Now
 from django.http import request, response
+from django.utils.dateparse import parse_duration
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.generics import (CreateAPIView, DestroyAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView)
+from rest_framework.generics import (CreateAPIView, DestroyAPIView, ListAPIView, UpdateAPIView, GenericAPIView)
+from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.generics import (CreateAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView, UpdateAPIView)
+from rest_framework.response import Response
 from tracker.serializers import (ProjectSerializer, ProjectActivitySerializer)
 from tracker.models import Project, ProjectActivity
 from employee.permissions import IsOwner, IsProjectMember, IsCurrentUser
+from utils.analytics import get_total_project_activity_time
 
 ########################### Project ###########################
 
@@ -133,13 +137,14 @@ class DestroyProjectActivityApiview(DestroyAPIView):
     def perform_destroy(self, instance):
         return instance.delete()
 
-class GetTotalProjectActivityTime(ListAPIView):
+class GetTotalProjectActivityTime(APIView):
     """
     
     """
     serializer_class = ProjectActivitySerializer
-    permission_classes = (IsAuthenticated,) # protect the endpoint
+    permission_classes = (IsAuthenticated, IsOwner|IsAdminUser) # protect the endpoint
 
-
-    def get_queryset(self):
-        return ProjectActivity.objects.filter(user=self.request.user)
+    def get(self, request, *args, **kwargs):
+        activities = ProjectActivity.objects.filter(user=self.kwargs['user'], project_id=self.kwargs['project']).annotate(end_or_now=Coalesce('end_time', Now())).annotate(duration=F('end_or_now')-F('start_time'))
+        serializer = ProjectActivitySerializer(activities, many=True)
+        return Response(get_total_project_activity_time(serializer.data))
