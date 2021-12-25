@@ -44,8 +44,8 @@
   </p>
 </div>
 
-##### Thanks for checking out this projecr. If you have a suggestion
-##### that would make this better, please fork the repo and create a pull request or simply open an issue with the tag "feature update".
+##### Thanks for checking out this projecr. 
+##### If you have a suggestion that would make this better, please fork the repo and create a pull request or simply open an issue with the tag "feature update".
 ##### Don't forget to give the project a star if you like it!
 ##### Thanks again! Now go create something AMAZING! :D🫂
 
@@ -81,7 +81,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
 This is a real time project activity tracker, which tracks your time spent on projects. with this app you can track the time employees spents on projects. and 
 come out with some analytics insight from it. it can be use to calculate employee productivity and wages etc.
@@ -93,9 +93,9 @@ come out with some analytics insight from it. it can be use to calculate employe
 ### Built With
 
 * [Python](https://python.org/)
-* [Django](https://reactjs.org/)
-* [DRF](https://vuejs.org/)
-* [SQLITE3](https://angular.io/)
+* [Django](https://www.djangoproject.com/)
+* [DRF](https://www.django-rest-framework.org/)
+* [SQLITE3](https://www.sqlite.org/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -133,6 +133,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+- [x] Add Changelog
 
 
 <!-- ROADMAP
@@ -212,4 +213,6 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png --> -->
+[product-screenshot]: images/screenshot.png --> 
+
+-->
