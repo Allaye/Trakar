@@ -1,12 +1,8 @@
-from django.db.models import fields, Sum, F
+from django.db.models import F
 from django.db.models.functions import Coalesce, Now
-from django.http import request, response
-from django.utils.dateparse import parse_duration
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.generics import (CreateAPIView, DestroyAPIView, ListAPIView, UpdateAPIView, GenericAPIView)
+from rest_framework.generics import (CreateAPIView, DestroyAPIView, ListAPIView, UpdateAPIView)
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
-from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.response import Response
 from tracker.serializers import (ProjectSerializer, ProjectActivitySerializer)
 from tracker.models import Project, ProjectActivity
@@ -17,8 +13,8 @@ from utils.analytics import get_total_project_activity_time, get_individual_proj
 
 class CreateProjectApiview(CreateAPIView):
     """
-    pytho
-    
+    Create a new project object, and return the created object.
+    permission_classes = "IsAuthenticated" :user is logged in , "IsAdminUser" : user is admin
     """
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
@@ -30,7 +26,8 @@ class CreateProjectApiview(CreateAPIView):
 
 class RetriveMyProjectsApiView(ListAPIView):
     """
-    
+    Retrive all projects that the logged in user is a member of.
+    permission_classes = "IsAuthenticated" :user is logged in 
     
     """
     serializer_class = ProjectSerializer
@@ -42,11 +39,12 @@ class RetriveMyProjectsApiView(ListAPIView):
 
 class RetriveProjectsApiView(ListAPIView):
     """
-    
+    Retrive all projects.
+    permission_classes = "IsAuthenticated" :user is logged in, "IsAdminUser" : user is admin
     
     """
     serializer_class = ProjectSerializer
-    permission_classes = (IsAuthenticated,) # protect the endpoint
+    permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
 
     
     def get_queryset(self):
@@ -54,11 +52,11 @@ class RetriveProjectsApiView(ListAPIView):
     
 class RetriveOneProjectApiview(ListAPIView):
     """
-    
-    
+    Retrive one project.
+    permission_classes = "IsAuthenticated" :user is logged in, "IsAdminUser" : user is admin
     """
     serializer_class = ProjectSerializer
-    permission_classes = (IsAuthenticated,) # protect the endpoint
+    permission_classes = (IsAuthenticated, ) # protect the endpoint
 
     
     def get_queryset(self):
@@ -67,8 +65,8 @@ class RetriveOneProjectApiview(ListAPIView):
 
 class UpdateProjectApiview(UpdateAPIView):
     """
-    
-    
+    Update a project object, and return the updated object.
+    permission_classes = "IsAuthenticated" :user is logged in, "IsAdminUser" : user is admin
     """
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
@@ -78,8 +76,8 @@ class UpdateProjectApiview(UpdateAPIView):
 
 class DeleteProjectApiview(DestroyAPIView):
     """
-    
-    
+    Delete a project object.
+    permission_classes = "IsAuthenticated" :user is logged in, "IsAdminUser" : user is admin
     """
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
@@ -132,7 +130,7 @@ class DestroyProjectActivityApiview(DestroyAPIView):
     """
     serializer_class = ProjectActivitySerializer
     permission_classes = (IsAuthenticated, IsOwner)  # protect the endpoint
-
+    queryset = ProjectActivity.objects.all()
 
     def perform_destroy(self, instance):
         return instance.delete()
