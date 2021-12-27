@@ -77,7 +77,7 @@ class UpdateProjectApiview(UpdateAPIView):
 class DeleteProjectApiview(DestroyAPIView):
     """
     Delete a project object.
-    permission_classes = "IsAuthenticated" :user is logged in, "IsAdminUser" : user is admin
+    Permission_classes = "IsAuthenticated" :user is logged in, "IsAdminUser" : user is admin
     """
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
@@ -90,7 +90,9 @@ class DeleteProjectApiview(DestroyAPIView):
 
 class CreateProjectActivityApiview(CreateAPIView):
     """
-    
+    Create a new project activity object, and return the created object.
+    permission_classes = "IsAuthenticated" :user is logged in, "IsProjectMember" : user is a member of the project, "IsProjectActive" : project is active
+    "IsCurrentUser" : user creating the object is current user
     """
     serializer_class = ProjectActivitySerializer
     permission_classes = (IsAuthenticated, IsProjectMember, IsCurrentUser, IsProjectActive) # protect the endpoint
@@ -105,7 +107,8 @@ class CreateProjectActivityApiview(CreateAPIView):
 
 class RetriveProjectsActivitiesApiView(ListAPIView):
     """
-    
+    Retrive all project activities by current user
+    permission_classes = "IsAuthenticated" :user is logged in
     """
     serializer_class = ProjectActivitySerializer
     permission_classes = (IsAuthenticated,) # protect the endpoint
@@ -116,7 +119,8 @@ class RetriveProjectsActivitiesApiView(ListAPIView):
 
 class UpdateProjectActivityApiview(UpdateAPIView):
     """
-    
+    Update a project activity object, and return the updated object.
+    permission_classes = "IsAuthenticated" :user is logged in, "IsOwner" : user is the owner of the project activity 
     """
     serializer_class = ProjectActivitySerializer
     permission_classes = (IsAuthenticated, IsOwner) # protect the endpoint
@@ -126,7 +130,8 @@ class UpdateProjectActivityApiview(UpdateAPIView):
 
 class DestroyProjectActivityApiview(DestroyAPIView):
     """
-    
+    Delete a project activity object.
+    Permission_classes = "IsAuthenticated" :user is logged in, "IsOwner" : user is the owner of the project activity
     """
     serializer_class = ProjectActivitySerializer
     permission_classes = (IsAuthenticated, IsOwner)  # protect the endpoint
@@ -137,6 +142,8 @@ class DestroyProjectActivityApiview(DestroyAPIView):
 
 class GetIndividualProjectActivityTime(APIView):
     """
+    Retrive the total time spent on a project by a user.
+    permission_classes = "IsAuthenticated" :user is logged in, "IsOwner" : user is the owner of the project activity or "IsAdminUser" : user is admin
     
     """
     serializer_class = ProjectActivitySerializer
@@ -149,6 +156,8 @@ class GetIndividualProjectActivityTime(APIView):
 
 class GetTotalProjectActivityTime(APIView):
     """
+    Retrive the total time spent on a project by all users.
+    permission_classes = "IsAuthenticated" :user is logged in, "IsAdminUser" : user is admin
     
     """
     serializer_class = ProjectActivitySerializer
