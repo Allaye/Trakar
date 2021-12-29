@@ -31,7 +31,7 @@
 <h3 align="center">Trakar</h3>
 
   <p align="center">
-    This is a real time project activity tracker, which tracks your time spent on projects.<br />
+    This is a real time project activity time tracker, which tracks your time spent on projects.<br />
     <!-- <br />
     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
     <br />
