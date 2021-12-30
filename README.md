@@ -154,6 +154,48 @@ This section contains all the useful endpoints this project provides.
     
     - [x] Project endpoints
 
+      -[x] Create New Project (can only be created by an admin)
+          * POST /api/create/project/
+            request body:{
+                "name": "project name",
+                "description": "project description",
+                "members": [1,4,2]
+                "start_date": "2020-01-01",
+                "end_date": "",
+                "is_active": true
+            }
+            response object:{
+                "id": 1,
+                "name": "project name",
+                "description": "project description",
+                "start_date": "2020-01-01",
+                "end_date": "2020-01-01",
+                "is_active": true
+            }
+      -[x] Get all projects
+          * GET /api/projects/
+            response object:{
+                "projects": [
+                    {
+                        "id": 1,
+                        "name": "project name",
+                        "description": "project description",
+                        "start_date": "2020-01-01",
+                        "end_date": "2020-01-01",
+                        "is_active": true,
+                        "members""[1,3]
+                    },
+                    {
+                        "id": 2,
+                        "name": "project name",
+                        "description": "project description",
+                        "start_date": "2020-01-01",
+                        "end_date": "2020-01-01",
+                        "is_active": true,
+                        "members""[4]
+                    }
+                ]
+            }
     - [x] Project Activities endpoints
 
 
