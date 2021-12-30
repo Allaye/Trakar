@@ -31,7 +31,7 @@
 <h3 align="center">Trakar</h3>
 
   <p align="center">
-    This is a real time project activity tracker, which tracks your time spent on projects.<br />
+    This is a real time project activity time tracker, which tracks your time spent on projects.<br />
     <!-- <br />
     <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
     <br />
@@ -44,7 +44,7 @@
   </p>
 </div>
 
-##### Thanks for checking out this projecr. 
+##### Thanks for checking out this project. 
 ##### If you have a suggestion that would make this better, please fork the repo and create a pull request or simply open an issue with the tag "feature update".
 ##### Don't forget to give the project a star if you like it!
 ##### Thanks again! Now go create something AMAZING! :D🫂
