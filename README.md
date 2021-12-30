@@ -197,7 +197,51 @@ This section contains all the useful endpoints this project provides.
                 ]
             }
     - [x] Project Activities endpoints
-
+        
+        -[x] Create New Project Activity
+            * POST /api/create/project/activity/
+              request body:{
+                  "user": 1,
+                  "project": 1,
+                  "activity": "activity name",
+                  "description": "activity description",
+                  "start_date": "2020-01-01",
+                  "end_date": "",
+              }
+              response object:{
+                  "id": 1,
+                  "project": 1,
+                  "activity": "activity name",
+                  "description": "activity description",
+                  "start_date": "2020-01-01",
+                  "end_date": "2020-01-01",
+                  "is_active": true
+                  "duration": 1000
+              }
+        -[x] Get all project activities
+            * GET /api/project/activities/
+              response object:{
+                  "activities": [
+                      {
+                          "id": 1,
+                          "project": 1,
+                          "activity": "activity name",
+                          "description": "activity description",
+                          "start_date": "2020-01-01",
+                          "end_date": "2020-01-01",
+                          "is_active": true
+                      },
+                      {
+                          "id": 2,
+                          "project": 1,
+                          "activity": "activity name",
+                          "description": "activity description",
+                          "start_date": "2020-01-01",
+                          "end_date": "2020-01-01",
+                          "is_active": true
+                      }
+                  ]
+              }
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
