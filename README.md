@@ -365,7 +365,7 @@ List one project:
 
 
 delete a project:
--      Endpoint Get api/project/delete/1/
+-      Endpoint DELETE api/project/delete/1/
 -      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
 
 -      Response{
@@ -374,7 +374,7 @@ delete a project:
 
 
 Update a project:
--      Endpoint Get api/project/update/1/
+-      Endpoint PATCH api/project/update/1/
 -      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
 -      Request body:{
         "start_date": "2022-01-01",
@@ -424,7 +424,7 @@ The project activities endpoints have some few requirements to be able to use th
         }
 
 Update a project activity:
--      Endpoint POST api/activity/update/1/
+-      Endpoint PATCH api/activity/update/1/
 -      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
 -      Request body:{
         "end_time": 2022-10-10,
@@ -438,7 +438,14 @@ Update a project activity:
         "end_time": "2021-12-31T19:26:46.826450Z",
         "project": 3,
         "user": 1
-      }
+        }
+
+delete a project activity:
+-      Endpoint DELETE api/activity/delete/1/
+-      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
+-      Response{
+        "message": "Project deleted successfully"
+        }
 
 
   
