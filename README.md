@@ -447,7 +447,24 @@ delete a project activity:
         "message": "Project deleted successfully"
         }
 
+Analytics endpoints:
+These endpoints are used to get analytics data for a project and a user.
+we can get the total time a user spent on a project, we can get the total time all project member spent on a project,
+List time spent on a project by a user:
+-      Endpoint get api/analytics/activity/duration/<int:user>/<int:project>'
+-      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
+-      Response{
+        "total_time": "8 days, 11:08:10",
+        "user": 1
+        }
 
+List time spent on a project by all project members:
+-      Endpoint get api/analytics/activity/duration/<int:project>'
+-      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
+-      Response{
+        "total_time": "30 days, 11:08:10",
+        "project": 1
+        }
   
 <!-- ROADMAP
 ## Roadmap
