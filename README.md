@@ -281,13 +281,39 @@ On successful login you get the above response object, the most important value 
 endpoint in other to gain access to the protected endpoints.
 
 <b>Project Endpoints:</b>
-The project endpoints have some few requirements to be able to create a project,
+The project endpoints have some few requirements to be able to use the endpoints,
 1. You must be an admin to create a project
 2. You must be logged in get details of a project
 3. A project can have 1 or more members
 
+create a new project using the below endpoint and example request body:
 
+    - Endpoint: Post: /api/create/project
+    - Request body:{
+    "name": "project pholoa",
+    "description": "blockchain systems to track spent time",
+    "technology": {"technology":"blockchain"},
+    "members": [1,4,2]           // this are the members ids added to the project (project members)
+    "start_date": "2022-01-01",  // if left blank it defaults to today
+    }
 
+    - Response:{
+    "id": 3,
+    "is_completed": false,
+    "title": "",
+    "description": "blockchain systems to track spent time",
+    "technology": {
+        "technology": "blockchain"
+    },
+    "start_date": "2022-01-01",
+    "end_date": null,
+    "members": [
+        1, 4, 2
+    ]
+    }
+you get a 403 error if you try to create a project without being an admin, to create an admin user you added 
+-     "is_staff": 1  
+to the user body when creating a user.
 
 
 
