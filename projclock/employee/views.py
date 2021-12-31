@@ -5,6 +5,24 @@ from employee.serializers import RegisterApiViewSerializer, LoginApiViewSerializ
 
 # Create your api views here.
 class RegisterApiView(GenericAPIView):
+    '''
+    Create a new project object, and return the created object.
+    permission_classes = "IsAuthenticated" :user is logged in , "IsAdminUser" : user is admin
+    Post: /api/register
+    {
+    "username": "ab",
+    "email": "ab@email.com",
+    "password": "ab@email.com"
+    }
+
+    response:
+    {
+    "id": 1,
+    "username": "ab",
+    "email": "ab@email.com",
+    "is_staff": false
+    }
+    '''
     authentication_classes = []
     serializer_class = RegisterApiViewSerializer
 
