@@ -247,7 +247,7 @@ This section contains all the useful endpoints this project provides.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Examples
-Register a new user, to create a new non admin user use the below endpoint:**
+Register a new user, to create a new non admin user use the below example,
 create a post request with the following minimum request body:
 
     - Endpoint: Post: /api/register/
@@ -256,14 +256,44 @@ create a post request with the following minimum request body:
     "email": "ab@email.com",
     "password": "ab@email.com"
     }
-    
+
     - Response:{
     "id": 1,
     "username": "ab",
     "email": "ab@email.com",
     "is_staff": false
     }
-after creating a new user, you can now login with the email and password you provided to obtain a token on succesful login
+after creating a new user, you can now login with the email and password you provided to obtain a token on succesful login.
+login using the below endpoint and example request body:
+
+    - Endpoint: Post: /api/login/
+    - Request body:{
+    "email": "ab@email.com",
+    "password": "ab@email.com"
+    }
+
+    - Response:{
+    "email": "ab@email.com",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4",
+    "is_staff": false
+    }
+On successful login you get the above response object, the most important value there is the token, the token will be use on all protected
+endpoint in other to gain access to the protected endpoints.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 <!-- ROADMAP
 ## Roadmap
