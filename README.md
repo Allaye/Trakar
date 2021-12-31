@@ -289,6 +289,7 @@ The project endpoints have some few requirements to be able to use the endpoints
 create a new project using the below endpoint and example request body:
 
     - Endpoint: Post: /api/create/project
+    - Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
     - Request body:{
     "name": "project pholoa",
     "description": "blockchain systems to track spent time",
