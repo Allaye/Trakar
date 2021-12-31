@@ -396,6 +396,31 @@ Update a project:
         }
 
 
+<b>Project activities endpoints:</b>
+These endpoints are used to create, list, update and delete project activities.
+activities are tasks that are perform on a project., theses endpoints are all protected, use token to access them,
+
+The project activities endpoints have some few requirements to be able to use the endpoints,
+1. only a project member can create a project activity on a project
+2. only a project activity creator can update or delete a project activity
+
+-      Endpoint POST api/create/activity
+-      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
+-      Request body:{
+        "user": 1,
+        "description": "developing payment endpoint",
+        "project": 3
+      }
+-      Response{
+        "id": 1,
+        "is_running": true,
+        "duration": "0:00:00",
+        "description": "developing payment endpoint",
+        "start_time": "2021-12-31T17:26:46.826450Z",
+        "end_time": null,
+        "project": 3,
+        "user": 1
+        }
 
 
 
