@@ -280,6 +280,12 @@ login using the below endpoint and example request body:
 On successful login you get the above response object, the most important value there is the token, the token will be use on all protected
 endpoint in other to gain access to the protected endpoints.
 
+<b>Project Endpoints:</b>
+The project endpoints have some few requirements to be able to create a project,
+1. You must be an admin to create a project
+2. You must be logged in get details of a project
+3. A project can have 1 or more members
+
 
 
 
