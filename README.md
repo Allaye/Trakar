@@ -316,11 +316,52 @@ you get a 403 error if you try to create a project without being an admin, to cr
 -     "is_staff": 1  
 to the user body when creating a user.
 
+List all, one, update and delete project endpoints are protected use token to access them,
+endpoints url
+List All: 
+-      Endpoint Get api/projects/
+-      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
 
+-      - Response:{
+        "projects": [
+            {
+                "id": 1,
+                "is_completed": false,
+                "title": "",
+                "description": "blockchain systems to track spent time",
+                "technology": {
+                    "technology": "blockchain"
+                },
+                "start_date": "2022-01-01",
+                "end_date": null,
+                "members": [
+                    1, 4, 2
+                ]
+            }
 
+List All endpoint user is member of:
+-      Endpoint Get api/projects/me/
+-      token: <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
+-      Response{
 
-
-
+        }
+List one project:
+-      Endpoint Get api/projects/1/
+-      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
+-      Response{
+        "id": 1,
+        "is_completed": false,
+        "title": "",
+        "description": "blockchain systems to track spent time",
+        "technology": {
+            "technology": "blockchain"
+        },
+        "start_date": "2022-01-01",
+        "end_date": null,
+        "members": [
+            1, 4, 2
+        ]
+        }
 
 
 
