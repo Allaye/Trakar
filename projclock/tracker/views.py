@@ -16,7 +16,7 @@ class CreateProjectApiview(CreateAPIView):
     Create a new project object, and return the created object.
     permission_classes = "IsAuthenticated" :user is logged in , "IsAdminUser" : user is admin
     Post: /api/create/project
-            
+
     """
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
@@ -97,7 +97,7 @@ class CreateProjectActivityApiview(CreateAPIView):
     "IsCurrentUser" : user creating the object is current user
     """
     serializer_class = ProjectActivitySerializer
-    permission_classes = (IsAuthenticated, IsProjectMember, IsCurrentUser, IsProjectActive) # protect the endpoint
+    permission_classes = (IsAuthenticated, IsProjectMember, IsCurrentUser) # protect the endpoint
     
     
 
