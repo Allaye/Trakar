@@ -245,8 +245,24 @@ This section contains all the useful endpoints this project provides.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
+## Examples
+** [x] Register a new user, to create a new non admin user use the following endpoint:**
+    -create a post request with the following minimum request body:
+    - Endpoint: Post: /api/register/
+    -Request body:{
+    "username": "ab",
+    "email": "ab@email.com",
+    "password": "ab@email.com"
+    }
+    - Response:
+    {
+    "id": 1,
+    "username": "ab",
+    "email": "ab@email.com",
+    "is_staff": false
+    }
+  after creating a new user, you can now login with the email and password you provided to obtain a token on succesful login
+  
 <!-- ROADMAP
 ## Roadmap
 
