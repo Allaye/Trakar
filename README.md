@@ -364,7 +364,7 @@ List one project:
         }
 
 
-delete one project:
+delete a project:
 -      Endpoint Get api/project/delete/1/
 -      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
 
@@ -373,7 +373,7 @@ delete one project:
         }
 
 
-Update one one project:
+Update a project:
 -      Endpoint Get api/project/update/1/
 -      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
 -      Request body:{
