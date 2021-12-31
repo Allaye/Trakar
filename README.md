@@ -364,6 +364,37 @@ List one project:
         }
 
 
+delete one project:
+-      Endpoint Get api/project/delete/1/
+-      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
+
+-      Response{
+        "message": "Project deleted successfully"
+        }
+
+
+Update one one project:
+-      Endpoint Get api/project/update/1/
+-      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
+-      Request body:{
+        "start_date": "2022-01-01",
+        "end_date": 2022-10-10,
+        }
+-      Response{
+        "id": 1,
+        "is_completed": true,
+        "title": "title here",
+        "description": "blockchain systems to track spent time",
+        "technology": {
+            "technology": "blockchain"
+        },
+        "start_date": "2022-01-01",
+        "end_date": "2022-10-10",
+        "members": [
+            1, 4, 2
+        ]
+        }
+
 
 
 
