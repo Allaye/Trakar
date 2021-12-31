@@ -403,6 +403,7 @@ activities are tasks that are perform on a project., theses endpoints are all pr
 The project activities endpoints have some few requirements to be able to use the endpoints,
 1. only a project member can create a project activity on a project
 2. only a project activity creator can update or delete a project activity
+3. only some field of a project activity can be updated or fields remain read only
 
 -      Endpoint POST api/create/activity
 -      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
@@ -422,6 +423,22 @@ The project activities endpoints have some few requirements to be able to use th
         "user": 1
         }
 
+Update a project activity:
+-      Endpoint POST api/activity/update/1/
+-      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
+-      Request body:{
+        "end_time": 2022-10-10,
+        }
+-      Response{
+        "id": 1,
+        "is_running": false,
+        "duration": "2:00:00",
+        "description": "developing payment endpoint",
+        "start_time": "2021-12-31T17:26:46.826450Z",
+        "end_time": "2021-12-31T19:26:46.826450Z",
+        "project": 3,
+        "user": 1
+      }
 
 
   

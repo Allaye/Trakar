@@ -72,6 +72,7 @@ class UpdateProjectApiview(UpdateAPIView):
     """
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
+    queryset = Project.objects.all()
     fields = ['title', 'description', 'technology', 'members', 'end_date']
     def perform_update(self, serializer):
         return serializer.save()
@@ -126,6 +127,7 @@ class UpdateProjectActivityApiview(UpdateAPIView):
     """
     serializer_class = ProjectActivitySerializer
     permission_classes = (IsAuthenticated, IsOwner) # protect the endpoint
+    queryset = ProjectActivity.objects.all()
     fields = ['description', 'end_time']
     def perform_update(self, serializer):
         return serializer.save()
