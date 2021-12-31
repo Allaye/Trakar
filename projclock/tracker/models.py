@@ -21,6 +21,8 @@ class Project(models.Model):
         """
         check if the current project has been completed and closed
         """
+        if self.end_date is None:
+            return False
         return self.end_date < datetime.now()
     
 
