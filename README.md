@@ -68,6 +68,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#examples">Examples</a></li>
     <!-- <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -249,6 +250,7 @@ This section contains all the useful endpoints this project provides.
 ** [x] Register a new user, to create a new non admin user use the following endpoint:**
     -create a post request with the following minimum request body:
     - Endpoint: Post: /api/register/
+
     -Request body:{
     "username": "ab",
     "email": "ab@email.com",
