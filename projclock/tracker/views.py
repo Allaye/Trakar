@@ -142,6 +142,12 @@ class DeleteProjectApiview(DestroyAPIView):
     """
     Delete a project object.
     Permission_classes = "IsAuthenticated" :user is logged in, "IsAdminUser" : user is admin
+        Endpoint DELETE api/project/delete/1/
+        Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
+
+        Response{
+        "message": "Project deleted successfully"
+        }
     """
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
@@ -209,7 +215,11 @@ class GetIndividualProjectActivityTime(APIView):
     """
     Retrive the total time spent on a project by a user.
     permission_classes = "IsAuthenticated" :user is logged in, "IsOwner" : user is the owner of the project activity or "IsAdminUser" : user is admin
-    
+    Response{
+        "total_time": "8 days, 11:08:10",
+        "user": 1
+        }
+        
     """
     serializer_class = ProjectActivitySerializer
     permission_classes = (IsAuthenticated, IsOwner|IsAdminUser) # protect the endpoint
@@ -224,6 +234,10 @@ class GetTotalProjectActivityTime(APIView):
     Retrive the total time spent on a project by all users.
     permission_classes = "IsAuthenticated" :user is logged in, "IsAdminUser" : user is admin
     
+    Response{
+        "total_time": "30 days, 11:08:10",
+        "project": 1
+        }
     """
     serializer_class = ProjectActivitySerializer
     permission_classes = (IsAuthenticated, IsOwner|IsAdminUser) # protect the endpoint
