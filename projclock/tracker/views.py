@@ -142,6 +142,12 @@ class DeleteProjectApiview(DestroyAPIView):
     """
     Delete a project object.
     Permission_classes = "IsAuthenticated" :user is logged in, "IsAdminUser" : user is admin
+        Endpoint DELETE api/project/delete/1/
+        Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
+
+        Response{
+        "message": "Project deleted successfully"
+        }
     """
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
