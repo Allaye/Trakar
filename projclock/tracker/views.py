@@ -109,6 +109,27 @@ class UpdateProjectApiview(UpdateAPIView):
     """
     Update a project object, and return the updated object.
     permission_classes = "IsAuthenticated" :user is logged in, "IsAdminUser" : user is admin
+    Endpoint PATCH api/project/update/1/
+      Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
+      Request body:{
+        "start_date": "2022-01-01",
+        "end_date": 2022-10-10,
+        }
+      Response{
+        "id": 1,
+        "is_completed": true,
+        "title": "title here",
+        "description": "blockchain systems to track spent time",
+        "technology": {
+            "technology": "blockchain"
+        },
+        "start_date": "2022-01-01",
+        "end_date": "2022-10-10",
+        "members": [
+            1, 4, 2
+        ]
+        }
+
     """
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
