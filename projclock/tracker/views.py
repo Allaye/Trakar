@@ -16,6 +16,30 @@ class CreateProjectApiview(CreateAPIView):
     Create a new project object, and return the created object.
     permission_classes = "IsAuthenticated" :user is logged in , "IsAdminUser" : user is admin
     Post: /api/create/project
+    - Endpoint: Post: /api/create/project
+    - Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
+    - Request body:{
+    "name": "project pholoa",
+    "description": "blockchain systems to track spent time",
+    "technology": {"technology":"blockchain"},
+    "members": [1,4,2]           // this are the members ids added to the project (project members)
+    "start_date": "2022-01-01",  // if left blank it defaults to today
+    }
+
+    - Response:{
+    "id": 3,
+    "is_completed": false,
+    "title": "",
+    "description": "blockchain systems to track spent time",
+    "technology": {
+        "technology": "blockchain"
+    },
+    "start_date": "2022-01-01",
+    "end_date": null,
+    "members": [
+        1, 4, 2
+    ]
+    }
 
     """
     serializer_class = ProjectSerializer
@@ -29,7 +53,23 @@ class CreateProjectApiview(CreateAPIView):
 class RetriveMyProjectsApiView(ListAPIView):
     """
     Retrive all projects that the logged in user is a member of.
-    permission_classes = "IsAuthenticated" :user is logged in 
+    permission_classes = "IsAuthenticated" :user is logged in
+    Get: /api/projects
+    response:
+    {
+         "id": 3,
+    "is_completed": false,
+    "title": "",
+    "description": "blockchain systems to track spent time",
+    "technology": {
+        "technology": "blockchain"
+    },
+    "start_date": "2022-01-01",
+    "end_date": null,
+    "members": [
+        1, 4, 2
+    ]
+    }
     
     """
     serializer_class = ProjectSerializer
