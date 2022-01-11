@@ -159,15 +159,18 @@ class DeleteProjectApiview(DestroyAPIView):
 ################## ProjectActivity ##############################
 
 class CreateProjectActivityApiview(CreateAPIView):
+
     """
+
     Create a new project activity object, and return the created object.
     permission_classes = "IsAuthenticated" :user is logged in, "IsProjectMember" : user is a member of the project, "IsProjectActive" : project is active
     "IsCurrentUser" : user creating the object is current user
+    Endpoint POST api/project/activity/create/1/
     """
     serializer_class = ProjectActivitySerializer
     permission_classes = (IsAuthenticated, IsProjectMember, IsCurrentUser) # protect the endpoint
     
-    
+
 
     def perform_create(self, serializer):
         data = self.request.data
@@ -212,6 +215,7 @@ class DestroyProjectActivityApiview(DestroyAPIView):
         return instance.delete()
 
 class GetIndividualProjectActivityTime(APIView):
+
     """
     Retrive the total time spent on a project by a user.
     permission_classes = "IsAuthenticated" :user is logged in, "IsOwner" : user is the owner of the project activity or "IsAdminUser" : user is admin
@@ -219,7 +223,6 @@ class GetIndividualProjectActivityTime(APIView):
         "total_time": "8 days, 11:08:10",
         "user": 1
         }
-        
     """
     serializer_class = ProjectActivitySerializer
     permission_classes = (IsAuthenticated, IsOwner|IsAdminUser) # protect the endpoint
@@ -245,4 +248,5 @@ class GetTotalProjectActivityTime(APIView):
     def get(self, request, *args, **kwargs):
         activities = ProjectActivity.objects.filter(project_id=self.kwargs['project']).annotate(end_or_now=Coalesce('end_time', Now())).annotate(duration=F('end_or_now')-F('start_time'))
         serializer = ProjectActivitySerializer(activities, many=True)
+        
         return Response(get_total_project_activity_time(serializer.data))
