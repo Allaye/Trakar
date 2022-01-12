@@ -58,7 +58,7 @@ class TestProjectHelper(APITestCase):
                 'technology': {
                     'technology': 'Python'
                 },
-                'members': [2]
+                'members': [1]
             }
             project_response = self.client.post(reverse('add_project'), request_data, format='json')
             return project_response
@@ -86,94 +86,93 @@ class TestProjectHelper(APITestCase):
         return project_activity_response
 
 # Create your tests here.
-# class TestProjectUserCase(TestProjectHelper):
-#     """
-#     test case to test the project creation endpoints
+class TestProjectUserCase(TestProjectHelper):
+    """
+    test case to test the project creation endpoints
 
-#     """
-#     def test_should_not_create_project_with_normal_user(self):
-#         """
-#         test case to test if the project creation endpoint will fail
-#         if the user is not an admin.
-#         """
-#         self.authenticate_user()
-#         project = self.create_project()
-#         self.assertEqual(project.status_code, status.HTTP_403_FORBIDDEN)
+    """
+    def test_should_not_create_project_with_normal_user(self):
+        """
+        test case to test if the project creation endpoint will fail
+        if the user is not an admin.
+        """
+        self.authenticate_user()
+        project = self.create_project()
+        self.assertEqual(project.status_code, status.HTTP_403_FORBIDDEN)
 
     
-#     def test_should_create_project_with_auth(self):
-#         """
-#         test case to test if the project creation endpoint will succeed
-#         if the user is logged in.
-#         """
-#         previous_projects_count = Project.objects.all().count()
-#         self.authenticate_admin()
-#         response = self.create_project()
-#         # print(response.data)
-#         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-#         self.assertGreater(Project.objects.all().count(), previous_projects_count)
-#         self.assertEqual(response.data['title'], 'Test Project')
-#         self.assertEqual(response.data['description'], 'Test Project Description')
-#         self.assertEqual(response.data['technology'], {'technology': 'Python'})
+    def test_should_create_project_with_auth(self):
+        """
+        test case to test if the project creation endpoint will succeed
+        if the user is logged in.
+        """
+        previous_projects_count = Project.objects.all().count()
+        self.authenticate_admin()
+        response = self.create_project()
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertGreater(Project.objects.all().count(), previous_projects_count)
+        self.assertEqual(response.data['title'], 'Test Project')
+        self.assertEqual(response.data['description'], 'Test Project Description')
+        self.assertEqual(response.data['technology'], {'technology': 'Python'})
         
 
-#     def test_retrives_all_projects_with_auth(self):
-#         """
-#         test case to test if the project retrival endpoint will succeed
-#         if the user is logged in.
-#         """
-#         self.authenticate_admin()
-#         response = self.client.get(reverse('list_projects'), format='json')
-#         self.assertEqual(response.status_code, status.HTTP_200_OK)
-#         #self.assertIsInstance(response.data['result'], list)
-#         response = self.create_project()
-#         response = self.client.get(reverse('list_projects'), format='json')
-#         self.assertEqual(response.status_code, status.HTTP_200_OK)
-#         # self.assertIsInstance(response.data[0], list)
-#         # print(response.data)
+    def test_retrives_all_projects_with_auth(self):
+        """
+        test case to test if the project retrival endpoint will succeed
+        if the user is logged in.
+        """
+        self.authenticate_admin()
+        response = self.client.get(reverse('list_projects'), format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        #self.assertIsInstance(response.data['result'], list)
+        response = self.create_project()
+        response = self.client.get(reverse('list_projects'), format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        # self.assertIsInstance(response.data[0], list)
+        # print(response.data)
 
-#     def test_retrive_one_project_with_auth(self):
-#         """
-#         with authendication, check if we can get a created project from the db
-#         """
-#         self.authenticate_admin()
-#         response = self.create_project()
-#         response = self.client.get(reverse('list_a_project', kwargs={'id': response.data['id']}), format='json')
-#         response.data = dict(response.data[0])
-#         self.assertEqual(response.status_code, status.HTTP_200_OK)
-#         project = Project.objects.get(id=response.data['id'])
-#         self.assertEqual(response.data['title'], 'Test Project')
-#         self.assertEqual(response.data['description'], 'Test Project Description')
-#         self.assertEqual(response.data['technology'], {'technology': 'Python'})
-
-    
-#     def test_update_one_project_with_auth(self):
-#         """
-#         with authentication, check if we can update a created project from the db
-#         """
-#         self.authenticate_admin()
-#         response = self.create_project()
-#         update_data = {
-#             'title': 'Test Project Updated',
-#             'description': 'Test Project Description Updated',
-#             'end_date': '2019-01-01'
-#         }
-#         response = self.client.patch(reverse('update_project', kwargs={'pk': response.data['id']}), update_data, format='json')
-#         self.assertEqual(response.status_code, status.HTTP_200_OK)
-#         updated_response = Project.objects.get(id=response.data['id'])
-#         print(updated_response)
-#         self.assertEqual(updated_response.title, 'Test Project Updated')
-#         self.assertEqual(updated_response.description, 'Test Project Description Updated')
-#         self.assertEqual(updated_response.is_completed, True)
+    def test_retrive_one_project_with_auth(self):
+        """
+        with authendication, check if we can get a created project from the db
+        """
+        self.authenticate_admin()
+        response = self.create_project()
+        response = self.client.get(reverse('list_a_project', kwargs={'id': response.data['id']}), format='json')
+        response.data = dict(response.data[0])
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        project = Project.objects.get(id=response.data['id'])
+        self.assertEqual(response.data['title'], 'Test Project')
+        self.assertEqual(response.data['description'], 'Test Project Description')
+        self.assertEqual(response.data['technology'], {'technology': 'Python'})
 
     
-#     def test_delete_one_project_with_auth(self):
-#         """check if with authentication, check if an admin can delete a created project from the db
-#         """
-#         self.authenticate_admin()
-#         response = self.create_project()
-#         response = self.client.delete(reverse('delete_project', kwargs={'pk': response.data['id']}), format='json')
-#         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+    def test_update_one_project_with_auth(self):
+        """
+        with authentication, check if we can update a created project from the db
+        """
+        self.authenticate_admin()
+        response = self.create_project()
+        update_data = {
+            'title': 'Test Project Updated',
+            'description': 'Test Project Description Updated',
+            'end_date': '2019-01-01'
+        }
+        response = self.client.patch(reverse('update_project', kwargs={'pk': response.data['id']}), update_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        updated_response = Project.objects.get(id=response.data['id'])
+        print(updated_response)
+        self.assertEqual(updated_response.title, 'Test Project Updated')
+        self.assertEqual(updated_response.description, 'Test Project Description Updated')
+        self.assertEqual(updated_response.is_completed, True)
+
+    
+    def test_delete_one_project_with_auth(self):
+        """check if with authentication, check if an admin can delete a created project from the db
+        """
+        self.authenticate_admin()
+        response = self.create_project()
+        response = self.client.delete(reverse('delete_project', kwargs={'pk': response.data['id']}), format='json')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     
 class TestProjectActivityUserCase(TestProjectHelper):
@@ -184,7 +183,7 @@ class TestProjectActivityUserCase(TestProjectHelper):
     def test_should_not_create_project_activity_when_user_not_project_member(self):
         """
         test case to test if the project activity creation endpoint will fail
-        if the user is not an admin.
+        if the user is not project member.
         """
         self.authenticate_user()
         self.authenticate_admin()
@@ -233,5 +232,7 @@ class TestProjectActivityUserCase(TestProjectHelper):
         response = self.create_project_activity()
         update_data = {
             'title': 'Test Project Activity Updated',
-            'end_time'
+            'end_time': '2019-01-01'
         }
+        response = self.client.patch(reverse('update_a_activity', kwargs={'pk': response.data['id']}), update_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
