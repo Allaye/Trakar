@@ -1,6 +1,6 @@
 from rest_framework.test import APITestCase
-from rest_framework import response, status
-from tracker.models import Project, ProjectActivity
+from rest_framework import status
+from tracker.models import Project
 from django.urls import reverse
 
 
