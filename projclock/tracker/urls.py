@@ -13,7 +13,7 @@ urlpatterns = [
     ############# ProjectActivity #############
     path('create/activity', views.CreateProjectActivityApiview.as_view(), name='add_activity'),
     path('activitys', views.RetriveProjectsActivitiesApiView.as_view(), name='list_activities'),
-    path('activity/update/<int:pk>', views.UpdateProjectActivityApiview.as_view(), name='list_a_activity'),
+    path('activity/update/<int:pk>', views.UpdateProjectActivityApiview.as_view(), name='update_a_activity'),
     path('activity/delete/<int:pk>', views.DestroyProjectActivityApiview.as_view(), name='list_update_delete_activity'),
     path('analytics/activity/duration/<int:user>/<int:project>', views.GetIndividualProjectActivityTime.as_view(), name='total_individual_project_activity_time'),
     path('analytics/activity/duration/<int:project>', views.GetTotalProjectActivityTime.as_view(), name='total_project_activity_time'),
