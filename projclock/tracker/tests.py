@@ -202,6 +202,13 @@ class TestProjectActivityUserCase(TestProjectHelper):
         project_activity = self.create_project_activity()
         self.assertEqual(project_activity.status_code, status.HTTP_201_CREATED)
     
+    def test_should_retrive_all_project_activities_when_user_is_activity_owner(self):
+        
+
+
+
+
+
     # def test_should_create_project_activity_with_auth(self):
     #     """
     #     test case to test if the project activity creation endpoint will succeed
