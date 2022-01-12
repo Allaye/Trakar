@@ -12,13 +12,12 @@ from utils.analytics import get_total_project_activity_time, get_individual_proj
 ########################### Project ###########################
 
 class CreateProjectApiview(CreateAPIView):
-    """
-    Create a new project object, and return the created object.
+    """Create a new project object, and return the created object.
     permission_classes = "IsAuthenticated" :user is logged in , "IsAdminUser" : user is admin
     Post: /api/create/project
-    - Endpoint: Post: /api/create/project
-    - Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
-    - Request body:{
+    Endpoint: Post: /api/create/project
+    Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhunXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
+    Request body:{
     "name": "project pholoa",
     "description": "blockchain systems to track spent time",
     "technology": {"technology":"blockchain"},
@@ -26,7 +25,7 @@ class CreateProjectApiview(CreateAPIView):
     "start_date": "2022-01-01",  // if left blank it defaults to today
     }
 
-    - Response:{
+    Response:{
     "id": 3,
     "is_completed": false,
     "title": "",
@@ -36,10 +35,14 @@ class CreateProjectApiview(CreateAPIView):
     },
     "start_date": "2022-01-01",
     "end_date": null,
-    "members": [
-        1, 4, 2
-    ]
+    "members": [1, 4, 2]
     }
+    
+    Error Response:{
+       "status_code": 403,
+         "detail": "You do not have permission to perform this action."
+    }
+
 
     """
     serializer_class = ProjectSerializer
@@ -51,8 +54,7 @@ class CreateProjectApiview(CreateAPIView):
 
 
 class RetriveMyProjectsApiView(ListAPIView):
-    """
-    Retrive all projects that the logged in user is a member of.
+    """Retrive all projects that the logged in user is a member of.
     permission_classes = "IsAuthenticated" :user is logged in
     Get: /api/projects
     response:
@@ -66,12 +68,12 @@ class RetriveMyProjectsApiView(ListAPIView):
     },
     "start_date": "2022-01-01",
     "end_date": null,
-    "members": [
-        1, 4, 2
-    ]
+    "members": [1, 4, 2]
     }
-    
-    """
+
+    Error Response:{
+         "status_code": 403,
+            "detail": "You do not have permission to perform this action." """
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated,) # protect the endpoint
 
