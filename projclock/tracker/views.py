@@ -47,8 +47,6 @@ class CreateProjectApiview(CreateAPIView):
     """
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
-
-
     def perform_create(self, serializer):
         return serializer.save()
 
@@ -72,7 +70,7 @@ class RetriveMyProjectsApiView(ListAPIView):
     }
 
     Error Response:{
-         "status_code": 403,
+         "status_code": 401,
             "detail": "You do not have permission to perform this action." """
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated,) # protect the endpoint
@@ -86,6 +84,8 @@ class RetriveProjectsApiView(ListAPIView):
     Retrive all projects.
     permission_classes = "IsAuthenticated" :user is logged in, "IsAdminUser" : user is admin
     
+    Error Response:{
+            "status_code": 403,
     """
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
@@ -108,8 +108,7 @@ class RetriveOneProjectApiview(ListAPIView):
 
 
 class UpdateProjectApiview(UpdateAPIView):
-    """
-    Update a project object, and return the updated object.
+    """Update a project object, and return the updated object.
     permission_classes = "IsAuthenticated" :user is logged in, "IsAdminUser" : user is admin
     Endpoint PATCH api/project/update/1/
       Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
@@ -127,11 +126,8 @@ class UpdateProjectApiview(UpdateAPIView):
         },
         "start_date": "2022-01-01",
         "end_date": "2022-10-10",
-        "members": [
-            1, 4, 2
-        ]
+        "members": [1, 4, 2]
         }
-
     """
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
@@ -141,8 +137,7 @@ class UpdateProjectApiview(UpdateAPIView):
         return serializer.save()
 
 class DeleteProjectApiview(DestroyAPIView):
-    """
-    Delete a project object.
+    """Delete a project object.
     Permission_classes = "IsAuthenticated" :user is logged in, "IsAdminUser" : user is admin
         Endpoint DELETE api/project/delete/1/
         Authorization: Bearer <eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImEiLCJlbWFpbCI6ImFAZW1haWwuY29tIiwiZXhwIjoxNjQxMDUyMjI0fQ.unXe-dxoFCEY5l2VGkeRR8ue-Ggr6YxQS2nJUA63VZ4>
@@ -150,6 +145,9 @@ class DeleteProjectApiview(DestroyAPIView):
         Response{
         "message": "Project deleted successfully"
         }
+
+        Error Response:{
+
     """
     serializer_class = ProjectSerializer
     permission_classes = (IsAuthenticated, IsAdminUser) # protect the endpoint
