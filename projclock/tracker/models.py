@@ -23,7 +23,7 @@ class Project(models.Model):
         """
         if self.end_date is None:
             return False
-        return self.end_date < datetime.now()
+        return self.end_date < datetime.now().date()
     
 
     class Meta:
