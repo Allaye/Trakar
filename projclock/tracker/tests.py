@@ -203,34 +203,35 @@ class TestProjectActivityUserCase(TestProjectHelper):
         self.assertEqual(project_activity.status_code, status.HTTP_201_CREATED)
     
     def test_should_retrive_all_project_activities_when_user_is_activity_owner(self):
-        
+        """test case to test if a user can retrieve all activities for project they created"""
+        self.authenticate_user()
+        self.authenticate_admin()
+        self.create_project(single=False)
+        self.authenticate_user()
+        self.create_project_activity()
+        response = self.client.get(reverse('list_activities'), format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response.data = dict(response.data[0])
+        self.assertIsInstance(response.data, dict)
 
+    def test_should_delete_activity_when_user_is_activity_owner(self):
+        """test case to test if a user can delete activity they created"""
+        self.authenticate_user()
+        self.authenticate_admin()
+        self.create_project(single=False)
+        self.authenticate_user()
+        response = self.create_project_activity()
+        response = self.client.delete(reverse('list_update_delete_activity', kwargs={'pk': response.data['id']}), format='json')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-
-
-
-    # def test_should_create_project_activity_with_auth(self):
-    #     """
-    #     test case to test if the project activity creation endpoint will succeed
-    #     if the user is logged in.
-    #     """
-    #     self.authenticate_admin()
-    #     project = self.create_project()
-    #     previous_project_activities_count = ProjectActivity.objects.all().count()
-    #     request_data = {
-    #         'title': 'Test Project Activity',
-    #         'description': 'Test Project Activity Description',
-    #         'start_date': '2019-01-01',
-    #         'end_date': '2019-01-01',
-    #         'project': project.data['id'],
-    #         'members': [1]
-    #     }
-    #     project_activity_response = self.client.post(reverse('add_project_activity'), request_data, format='json')
-    #     self.assertEqual(project_activity_response.status_code, status.HTTP_201_CREATED)
-    #     self.assertGreater(ProjectActivity.objects.all().count(), previous_project_activities_count)
-    #     self.assertEqual(project_activity_response.data['title'], 'Test Project Activity')
-    #     self.assertEqual(project_activity_response.data['description'], 'Test Project Activity Description')
-    #     self.assertEqual(project_activity_response.data['project'], project.data['id'])
-
-    
-    
+    def test_should_update_activity_when_user_is_activity_owner(self):
+        """test case to test if an activity ownwer can update activity"""
+        self.authenticate_user()
+        self.authenticate_admin()
+        self.create_project(single=False)
+        self.authenticate_user()
+        response = self.create_project_activity()
+        update_data = {
+            'title': 'Test Project Activity Updated',
+            'end_time'
+        }
