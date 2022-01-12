@@ -62,4 +62,4 @@ class TestEmployeeUseCase(APITestCase):
         }
         self.client.post(reverse("register"), account_creation_data, format='json')
         response = self.client.post(reverse("login"), login_data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
